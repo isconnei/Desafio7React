@@ -2,10 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../context/cartContext";
+import UserContext from "../context/UserContext";
 
 export default function Navbar() {
-  const token = false;
   const { total } = useContext(CartContext);
+  const { token, logout } = useContext(UserContext);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,26 +34,35 @@ export default function Navbar() {
                 Inicio
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/register">
-                Registrarse
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">
-                Iniciar Sesión
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/profile">
-                Perfil
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/linkRoto">
-                Link roto
-              </Link>
-            </li>
+
+            {token ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/profile">
+                    Perfil
+                  </Link>
+                </li>
+                <button
+                  className="btn btn-outline-primary"
+                  onClick={() => logout()}
+                >
+                  Cerrar sesión
+                </button>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/register">
+                    Registrarse
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">
+                    Iniciar Sesión
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
 
           <Link to="/cart" className="btn btn-outline-primary">

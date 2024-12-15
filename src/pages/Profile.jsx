@@ -1,7 +1,17 @@
 import React from "react";
+import { useContext } from "react";
+import UserContext from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const email = "icontrerasn@pm.me";
+  const { logout } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <div className="container mt-5">
@@ -11,7 +21,9 @@ export default function Profile() {
           <p className="card-text">
             <strong>Email:</strong> {email}
           </p>
-          <button className="btn btn-danger mt-3">Cerrar sesión</button>
+          <button className="btn btn-danger mt-3" onClick={handleLogout}>
+            Cerrar sesión
+          </button>
         </div>
       </div>
     </div>

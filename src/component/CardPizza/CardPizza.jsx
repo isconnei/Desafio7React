@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { CartContext } from "../../context/cartContext";
 
 export default function CardPizza({ pizza }) {
@@ -14,9 +15,9 @@ export default function CardPizza({ pizza }) {
           <p className="card-text">Ingredientes:</p>
           <ul>{pizza.ingredients.join(", ")}</ul>
           <div className="d-flex justify-content-between">
-            <a href="#" className="btn btn-primary">
+            <Link to={`/pizza/${pizza.id}`} className="btn btn-primary">
               Ver más
-            </a>
+            </Link>
             <button className="btn btn-success" onClick={() => addPizza(pizza)}>
               Añadir
             </button>

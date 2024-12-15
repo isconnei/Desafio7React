@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { CartContext } from "../context/cartContext";
+import UserContext from "../context/UserContext";
 
 export default function Cart() {
   const { cart, total, addPizza, removePizza } = useContext(CartContext);
-
+  const { token } = useContext(UserContext);
   const handleIncrement = (pizza) => {
     addPizza(pizza);
   };
@@ -61,6 +62,7 @@ export default function Cart() {
       <div className="mt-3">
         <h4>Total: ${total.toLocaleString()}</h4>
       </div>
+      {token && <button className="btn btn-danger m-5 mt-2">Pagar</button>}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import CardPizza from "../component/CardPizza/CardPizza";
 import Header from "../component/Home/Header";
+import Footer from "../component/Footer/Footer";
 
 export default function Home() {
   const [listPizza, setListPizza] = useState([]);
@@ -31,6 +32,7 @@ export default function Home() {
           <CardPizza key={index} pizza={pizza} />
         ))}
       </div>
+      <Footer />
     </div>
   );
 }

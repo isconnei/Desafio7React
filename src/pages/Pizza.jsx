@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export default function Pizza() {
   const [datosPizza, setDatosPizza] = useState(null);
+  const { id } = useParams();
+  const baseURL = "http://localhost:5289/api/pizzas";
 
   useEffect(() => {
     pizzaRequest();
   }, []);
 
   const pizzaRequest = async () => {
-    const URL = "http://localhost:5289/api/pizzas/p001";
+    const URL = `${baseURL}/${id}`;
     try {
       const response = await fetch(URL);
       if (!response.ok) {
